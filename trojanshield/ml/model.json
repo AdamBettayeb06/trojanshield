@@ -1,0 +1,15 @@
+{
+  "n_trees": 50,
+  "family_labels": {
+    "RAT": 0,
+    "InfoStealer": 1,
+    "BankingTrojan": 2,
+    "Dropper": 3,
+    "Ransomware": 4,
+    "Keylogger": 5,
+    "Backdoor": 6,
+    "BENIGN": 7
+  },
+  "trained": true,
+  "note": "Full tree serialization omitted for brevity \u2014 use joblib in production"
+}

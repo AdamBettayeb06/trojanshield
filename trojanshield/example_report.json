@@ -1,0 +1,110 @@
+{
+  "trojanshield_version": "1.0",
+  "analysis_timestamp": "2026-11-02T03:31:19.282308",
+  "target_file": "samples/test_trojan.bin",
+  "file_size_bytes": 1076,
+  "verdict": "MALICIOUS - Dropper",
+  "threat_score": 100,
+  "evasion_detected": true,
+  "c2_indicators": [
+    "http://185.234.218.25:4444/gate.php",
+    "http://185.234.218.25:4444/gate.php\u0000Mozilla/5.0",
+    "185.234.218.25:4444",
+    "C2 URL: http://185.234.218.25:4444/gate.php",
+    "C2 IP: 185.234.218.25:4444"
+  ],
+  "timing_seconds": {
+    "static": 0.05,
+    "sandbox": 0.0,
+    "heuristic": 0.01,
+    "multivm": 0.0,
+    "ml": 0.0
+  },
+  "hashes": {
+    "md5": "10c5631479927819d65e13df2bcb2d30",
+    "sha1": "a377e76697046fcf2c12411d77a77ecbb11ed890",
+    "sha256": "15a3693dbe0f8d34e59a1736541735a878b8cbae374252900ea7b72dcbb724d8",
+    "fuzzy": "3a00ca68d82ce7fa5c77a91ecd7b76c078e6a28509f4c9a99d503db513bd6c57"
+  },
+  "malware_family": {
+    "family": "Dropper",
+    "description": "Downloads and installs secondary payload",
+    "confidence": 30.0,
+    "probabilities": {
+      "RAT": 15.1,
+      "InfoStealer": 9.8,
+      "BankingTrojan": 4.9,
+      "Dropper": 30.0,
+      "Backdoor": 15.8,
+      "Keylogger": 5.9,
+      "Ransomware": 18.4
+    },
+    "is_malicious": true
+  },
+  "stage_scores": {
+    "Static Analysis": 98,
+    "VM Sandbox Simulation": 100,
+    "Heuristic Scanning": 100,
+    "Multi-VM Orchestration": 100,
+    "ML Engine": 100
+  },
+  "all_flags": {
+    "Static Analysis": [
+      "High entropy (6.98) - possible obfuscation or packing",
+      "String IOC: Command shell execution - 'cmd.exe /c powershell -enc JABjACAA'",
+      "String IOC: Encoded PowerShell command - 'cmd.exe /c powershell -enc JABjACAA'",
+      "String IOC: AppData persistence location - 'C:\\Users\\Admin\\AppData\\Roaming\\svchost32.exe'",
+      "String IOC: Registry autorun key - persistence - 'SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'",
+      "String IOC: Scheduled task creation - persistence - 'schtasks /create /tn WindowsUpdate /tr'",
+      "String IOC: Hardcoded IP address (C2) - 'http://185.234.218.25:4444/gate.php'",
+      "String IOC: Classic C2 endpoint pattern - 'http://185.234.218.25:4444/gate.php'",
+      "String IOC: Fake browser User-Agent string - 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'",
+      "String IOC: Keylogger reference - 'keylog'",
+      "String IOC: Password string present - 'password'",
+      "1/3 blocks have high entropy - large encrypted region"
+    ],
+    "VM Sandbox Simulation": [
+      "Anti-VM registry probe: HKLM\\SOFTWARE\\Oracle\\VirtualBox",
+      "Anti-VM file probe: vmware",
+      "CPUID instruction - hardware fingerprinting for VM detection",
+      "RDTSC timing check - sandbox speed detection",
+      "Data targeting: Targets AppData (credential stores)",
+      "Data targeting: Searches for password files",
+      "IP-based C2 URL: http://185.234.218.25:4444/gate.php\u0000Mozilla/5.0",
+      "Packer detected: UPX packer",
+      "Packer detected: UPX packer",
+      "EVASION BEHAVIOR: Binary probes for sandbox environment before acting"
+    ],
+    "Heuristic Scanning": [
+      "[ANTI_001] CPUID Sandbox Probe - Binary queries CPUID and branches - VM fingerprinting",
+      "[ANTI_002] Timing Attack / RDTSC - Reads timestamp counter - sandbox speed detection",
+      "[ANTI_003] Anti-Debug via PEB - Checks Process Environment Block debug flag",
+      "[PERS_001] Registry Autorun Persistence - Writes to Run/RunOnce registry keys",
+      "[PERS_003] Scheduled Task Persistence - Creates scheduled task for persistence",
+      "[INJ_001] Process Hollowing Pattern - CreateProcess + NtUnmapViewOfSection - process hollowing",
+      "[INJ_002] Reflective DLL Injection - Reflective loader pattern detected",
+      "[NET_002] Hardcoded IP Address - Non-RFC1918 IP hardcoded - potential C2",
+      "[PAY_001] Shellcode Signature - NOP sled or shellcode pattern detected",
+      "[PAY_002] PowerShell Encoded Payload - Base64-encoded PowerShell execution",
+      "Cross-stage correlation: Static analysis also scored 98/100"
+    ],
+    "Multi-VM Orchestration": [
+      "Anti-analysis: CPUID - querying hardware to detect VM",
+      "Anti-analysis: RDTSC - timing attack for sandbox detection",
+      "Anti-analysis: VMware string probe",
+      "Anti-analysis: VirtualBox string probe",
+      "Anti-analysis: VirtualBox short probe",
+      "Anti-analysis: Anti-debug: IsDebuggerPresent",
+      "C2 beacon URL in Stripped OS: http://185.234.218.25:4444/gate.php",
+      "C2 beacon URL in Office Worker: http://185.234.218.25:4444/gate.php",
+      "C2 beacon URL in Developer Workstation: http://185.234.218.25:4444/gate.php",
+      "C2 beacon URL in Financial Workstation: http://185.234.218.25:4444/gate.php"
+    ],
+    "ML Engine": [
+      "ML Classifier: Dropper (30.0% confidence)",
+      "Anomaly: Abnormally high entropy (6.98 > 6.5)",
+      "Anomaly: Very few imports (0) - API obfuscation suspected"
+    ]
+  },
+  "decrypted_configs": []
+}
